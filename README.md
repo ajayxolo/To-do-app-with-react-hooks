@@ -1,122 +1,71 @@
-import React, { useState, useEffect } from "react";
+# Getting Started with Create React App
+Click this link https://main--precious-bavarois-7fc439.netlify.app/ to view the app
 
-function App() {
-  const [tasks, setTasks] = useState(() => {
-    // Load from localStorage if available
-    const saved = localStorage.getItem("tasks");
-    return saved ? JSON.parse(saved) : [];
-  });
-  const [input, setInput] = useState("");
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-  // Save tasks to localStorage whenever they change
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
+## Available Scripts
 
-  const addTask = () => {
-    if (input.trim() === "") return;
-    const newTask = {
-      id: Date.now(),
-      text: input,
-      completed: false,
-    };
-    setTasks([...tasks, newTask]);
-    setInput("");
-  };
+In the project directory, you can run:
 
-  const toggleTask = (id) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
-      )
-    );
-  };
+### `npm start`
 
-  const deleteTask = (id) => {
-    setTasks(tasks.filter((task) => task.id !== id));
-  };
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-  return (
-    <div style={styles.container}>
-      <h1 style={styles.heading}>✅ To-Do App</h1>
-      <div style={styles.inputArea}>
-        <input
-          style={styles.input}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Add a new task..."
-        />
-        <button style={styles.addBtn} onClick={addTask}>
-          Add
-        </button>
-      </div>
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-      <ul style={styles.list}>
-        {tasks.map((task) => (
-          <li
-            key={task.id}
-            style={{
-              ...styles.task,
-              textDecoration: task.completed ? "line-through" : "none",
-              color: task.completed ? "#888" : "#000",
-            }}
-          >
-            <span onClick={() => toggleTask(task.id)} style={{ cursor: "pointer" }}>
-              {task.text}
-            </span>
-            <button style={styles.deleteBtn} onClick={() => deleteTask(task.id)}>
-              ❌
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+### `npm test`
 
-// Inline styles for simplicity
-const styles = {
-  container: {
-    maxWidth: "400px",
-    margin: "50px auto",
-    padding: "20px",
-    borderRadius: "12px",
-    backgroundColor: "#f9f9f9",
-    boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-  },
-  heading: { textAlign: "center" },
-  inputArea: { display: "flex", marginBottom: "20px" },
-  input: {
-    flex: 1,
-    padding: "10px",
-    borderRadius: "6px",
-    border: "1px solid #ccc",
-  },
-  addBtn: {
-    marginLeft: "10px",
-    padding: "10px 15px",
-    border: "none",
-    borderRadius: "6px",
-    backgroundColor: "#007bff",
-    color: "white",
-    cursor: "pointer",
-  },
-  list: { listStyle: "none", padding: 0 },
-  task: {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: "8px",
-    background: "#fff",
-    borderRadius: "6px",
-    marginBottom: "8px",
-    boxShadow: "0 2px 5px rgba(0,0,0,0.05)",
-  },
-  deleteBtn: {
-    border: "none",
-    background: "transparent",
-    cursor: "pointer",
-    fontSize: "16px",
-  },
-};
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-export default App;
+### `npm run build`
+
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
